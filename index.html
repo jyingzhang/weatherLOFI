@@ -1,0 +1,395 @@
+<!doctype html> 
+<html>
+<head>
+    <title>Home Page</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dwjysuJrrabrCZGb_oN986YW08rElCc&callback=myMap"></script>
+    <style>
+
+    .navigation {
+        background-color: #87CEEB;
+    }
+    body {
+    background-color: #FDDEF0;
+    }
+
+    .navigation li {
+    display: inline;
+    padding: 10px;
+    position: relative;
+    left: 41%;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    th, td {
+  padding: 15px;
+  text-align: left;
+    }
+
+    h1 {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h2 {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .title{
+        text-align: center; 
+        font-size: 50px;
+    }
+    
+    p {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    iframe{
+          margin: 0 ;
+          display: block ;
+        }
+
+    *{
+    box-sizing: border-box;
+    }
+    
+    .column {
+    float: left;
+    width: 50%;
+    padding: 2px;
+    }
+
+    .row1{
+    position: relative;
+    margin: auto;
+    width: 50%;
+    }
+
+    .row2:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+
+    .row1:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+
+      .p1 {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.8;
+
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class = 'title'>Weather Lofi Finder</h1>
+
+    <div class="navigation" >
+        <h2 style="text-align:center;" >Navigation</h2>
+        <ul> 
+        <li><input type=button id=locationButton value= "Use Location"> </li> 
+        <li><input type=button id=mapButton value= "Use Map"></li>
+        </ul>
+    </div>
+
+    <div id="page1"> 
+    <div class= 'row1'>
+        <div class= 'column'>
+            <p class = 'p1'>Welcome! With this page, you can find out the weather condition for the searched location, <br>
+                and with the the location condition, you will be provided a lofi playlist based on the weather.
+            </p>
+        </div>
+        <div class = 'column'>
+        <img src= "https://media.giphy.com/media/68knnSJFFwA7e/giphy.gif?cid=790b7611e3975d6da9d1a01dceeae041c7bc7d3265a2e207&rid=giphy.gif&ct=s" 
+        style="vertical-align:middle;margin:0px 50px" width= 40% height=auto>
+        </div>
+    </div>
+
+    
+    <div class="row2">
+        <div class="column">   
+            <h1>What is the weather in the mood for?</h1>
+            <div class = 'container'>
+                <form>
+                    <input type="text" id= 'userInput' name='city' placeholder="Search for a city">
+                    <span class="msg"></span>
+                    <input type= 'button' id='btn_search' value='Search' class='btn btn-primary'>
+                </form>
+                <p>please make sure the city is spelled correctly</p>
+                <p>ex: phildelphia <b>WILL NOT WORK</b></p>
+            </div>
+
+            <br>
+            
+            <div id ="weatherInformation">
+                <h1 id ='cityName'></h1>
+                <h2 id="temp"></h1>
+                <h2 id="description"></h2>
+                <div id="icon"><img id="weather_icon" src=""> </div>
+            </div>
+            <h2 id="failureMessage" style="color:red;" ></h2>
+        </div>
+
+        <div class="column">
+            <div id="musicReccomendation">
+                <h1 id= "musicMessage"> Lofi Recommendation </h1>
+                <br>
+                <br>
+                <br>
+            <p id=lofiMessage style="text-align:center;">the recommendation will appear here.</p>
+            <iframe id="ytplayer" type="text/html" width="640" height="360" class='center'
+            src= ""
+            frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id='page2'>
+
+        <div class= 'row1'>
+            <div class= "column"> 
+            <p class  = "p1">What if you want to go somewhere else? What if you want to explore the world?<br>
+                On this page, you can click anywhere on the map, find out it's location and weather condition.<br>
+                You will be reccomended a lofi playlist based on the clicked location's weather, and it will be like you're there!<br>
+            </p>
+              </div>
+            <div class = 'column'>
+            <img src= "https://media.giphy.com/media/68knnSJFFwA7e/giphy.gif?cid=790b7611e3975d6da9d1a01dceeae041c7bc7d3265a2e207&rid=giphy.gif&ct=s" 
+            style="vertical-align:middle;margin:0px 50px" width= 40% height=auto>
+            </div>
+        </div>
+
+        
+    
+            <div class = 'use_map_info'>
+            <h1> Explore the world through music!</h1>
+            <h2 >click somewhere on the map!</h2>
+    
+            <div class="row">
+    
+            <div class="column">
+            
+              <h1 id="clicked_city_name2">🥺😳✨🤡🤩👀🧚🏻💅🏻</h1>
+              <h2 id="description2"> --- </h2>
+              <div id="googleMap" style="width:75%;height: 600px;"  class="center"></div>
+              </div>
+            </div>
+    
+            <div class="column">
+                <div id="musicReccomendation">
+              <br>
+              <br>
+              <br>
+              <br>
+              <p id=lofiMessage2 style="text-align:center;">the recommendation will appear here.</p>
+              <iframe id="ytplayer2" type="text/html" margin = 0 width="640" height="360" 
+              src= ""
+              frameborder="0"></iframe>
+                </div>
+            </div>
+            </div>
+    </div>
+
+</body>
+<script>
+
+$('#page2').hide()
+
+const form = document.querySelector(".top-banner form");
+const input = document.querySelector(".top-banner input");
+const msg = document.querySelector(".top-banner .msg");
+const list = document.querySelector(".ajax-section .cities");
+const apiKey = "fc82ab3ad46974358c91adf1dcd4b082";
+$('#image').show();
+
+//  $('#musicReccomendation').hide();
+    $('#ytplayer').hide();
+
+function gettingJSON(){
+    $("#failureMessage").html("");
+    $('#lofiMessage').hide();
+
+    var city = $('#userInput').val();
+    const url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID="+apiKey;
+
+    $.getJSON(url,function(json){
+        var location = json['name'];
+        var temp = json['main']['temp'];
+        var weatherCondition = json['weather'][0]['description'];
+        var icon_code = json['weather'][0]['icon'];
+        var info = json;
+        console.log(info);
+        console.log("jquery loaded");
+        var iconURL = "https://openweathermap.org/img/w/" + icon_code + ".png";
+        var temp_in_fah = ((temp-273.15)*(9/5)+32).toFixed(0)
+        $('#cityName').html("The Weather for " +location);
+        $('#temp').html("Temperature: " +temp_in_fah+ "°F");
+        $('#description').html(weatherCondition);
+        $('#weather_icon').attr('src', iconURL);
+       
+        if (weatherCondition == 'clear sky') {
+            console.log('clear sky');
+            $('#ytplayer').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PL73A_Hf5VgyIQlTDOnpuWNNANWVbVqGgV");
+        };
+        
+        if (weatherCondition.includes('clouds')) {
+            console.log('clouds present');
+            $('#ytplayer').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLN3aJaAtvu--3OFb082c7HigAX8DisIaa");
+        }; 
+
+        if (weatherCondition.includes('rain')) {
+            console.log('gross weather');
+            $('#ytplayer').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLOzDu-MXXLlgKMA3S2FXY_XVyDrukc0si");
+        };
+
+        if (weatherCondition.includes('snow')) {
+            console.log('gross weather');
+            $('#ytplayer').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLdHvsNItoip9Z0aP6jJ3g-mYd5EMUyyUK");
+        };
+
+        if (weatherCondition == 'thunderstorm') {
+            console.log('storming');
+            $('#ytplayer').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLDhvYs_TRRfE5hx6XSFWYdi0LIIN-DDv8");
+        }
+        });
+    }
+
+    // script 2--------------------------------------------------------------------------//
+$('#ytplayer').hide();
+
+var map;
+var myCenter=new google.maps.LatLng(37.0902,-95.7129);
+
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:4.5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+  });
+}
+
+function placeMarker(location) {
+  const marker = new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+    });
+  const latitude = location.lat();
+  const longitude = location.lng();
+  
+  console.log("latiude: " + latitude+" longitude: "+longitude);
+  console.log('clicked');
+  infowindow.open(map,marker);
+  // return latitude;
+  // return longitude;
+  // return marker;
+
+  const apiKey = "fc82ab3ad46974358c91adf1dcd4b082";
+  const url =  "https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid="+apiKey;
+    // const url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID="+apiKey;
+
+    $.getJSON(url,function(json){
+        let location = json['name'];
+        let temp = json['main']['temp'];
+        let weatherCondition = json['weather'][0]['description'];
+        let icon_code = json['weather'][0]['icon'];
+        let info = json;
+        console.log(info);
+        console.log("jquery loaded");
+        let iconURL = "https://openweathermap.org/img/w/" + icon_code + ".png";
+        let temp_in_fah = ((temp-273.15)*(9/5)+32).toFixed(0)
+        $('#cityName2').html("The Weather for " +location);
+        $('#temp2').html("Temperature: " +temp_in_fah+ "°F");
+        $('#description2').html(weatherCondition);
+        $('#weather_icon2').attr('src', iconURL);
+        $('#clicked_city_name2').html("City: "+location)
+        
+    if (weatherCondition == 'clear sky') {
+    console.log('clear sky');
+    $('#ytplayer2').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PL73A_Hf5VgyIQlTDOnpuWNNANWVbVqGgV");
+    };
+    
+    if (weatherCondition.includes('clouds')) {
+        console.log('clouds present');
+        $('#ytplayer2').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLN3aJaAtvu--3OFb082c7HigAX8DisIaa");
+    }; 
+
+    if (weatherCondition.includes('rain')) {
+        console.log('gross weather');
+        $('#ytplayer2').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLOzDu-MXXLlgKMA3S2FXY_XVyDrukc0si");
+    };
+
+    if (weatherCondition.includes('snow')) {
+        console.log('gross weather');
+        $('#ytplayer2').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLdHvsNItoip9Z0aP6jJ3g-mYd5EMUyyUK");
+    };
+
+    if (weatherCondition == 'thunderstorm') {
+        console.log('storming');
+        $('#ytplayer2').attr('src', "https://www.youtube.com/embed?listType=playlist&list=PLDhvYs_TRRfE5hx6XSFWYdi0LIIN-DDv8");
+    }
+    $('#lofiMessage').hide();
+    $('#ytplayer2').show();
+    $("#lofiMessage2").hide();
+        });
+    
+}
+
+google.maps.event.addDomListener(window, 'load', initialize)
+
+
+//event handler
+
+    $('#btn_search').click(function(){
+
+        let location = $('#userInput').val();
+
+        if (location == "") {
+        $("#failureMessage").html("Please enter a valid city.");
+        $("#weatherInformation").hide();
+        }else{ 
+
+        $("#weatherInformation").show();
+        gettingJSON();
+        var city = $('#userInput').val("");
+        $('#ytplayer').attr('src', "");
+
+
+        $('#image').show();
+        $('#musicReccomendation').show();
+        $('#ytplayer').show();
+
+
+    }
+})
+
+    $('#mapButton').click(function(){
+        $('#page1').hide();
+        $('#page2').show()
+
+    })
+
+    $('#locationButton').click(function(){
+        $('#page1').show();
+        $('#page2').hide();
+    })
+
+
+</script>
+
+</html>
