@@ -13,4 +13,4 @@ Weather that
   2. includes 'clouds;
   3. includes 'rain'
   4. includes 'snow'
-  5. mathces 'thunderstorm'
+  5. matches 'thunderstorm'
