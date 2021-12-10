@@ -1,7 +1,7 @@
 # weatherLOFI
 https://misdemo.temple.edu/tuk81124/LofiWeatherAPI
 
-For the API Project in MIS 2402, we created an application using two to three APIs. For my application I used the OpenWeatherAPI, Youtube iframe API, and Google Maps API.
+For this API Project in MIS 2402, we created an application using two to three APIs. For my application I used the OpenWeatherAPI, Youtube iframe API, and Google Maps API.
 
 My application pulls a lofi playlist from Youtube, and the lofi playlist is based on the weather of the city the user entered or the clicked location on the map. 
 
