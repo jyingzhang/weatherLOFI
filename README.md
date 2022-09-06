@@ -1,5 +1,7 @@
 # weatherLOFI
 https://misdemo.temple.edu/tuk81124/LofiWeatherAPI
+**link no longer works-archived by MIS department 
+**google maps API free trial ended.
 
 For this API Project in MIS 2402, we created an application using two to three APIs. For my application I used the OpenWeatherAPI, Youtube iframe API, and Google Maps API.
 
